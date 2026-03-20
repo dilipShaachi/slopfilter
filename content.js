@@ -178,9 +178,9 @@
 
   function getThreshold() {
     switch (settings.sensitivity) {
-      case "low": return 65;
-      case "high": return 30;
-      default: return 45;
+      case "low": return 60;
+      case "high": return 25;
+      default: return 35;
     }
   }
 
