@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SlopFilter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The ad blocker for AI-generated content. Detects and dims AI slop so you can read what humans actually wrote.",
   "permissions": ["storage", "activeTab"],
   "background": {
