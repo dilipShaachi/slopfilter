@@ -113,7 +113,51 @@
     "enables you to",
     "empowers you to",
     "helps you to",
-    "take advantage of"
+    "take advantage of",
+    "allows users to",
+    "allows creators to",
+    "allows teams to",
+    "comprehensive",
+    "gold standard",
+    "has evolved into",
+    "previously only possible",
+    "solidified its position",
+    "high-end",
+    "cutting edge",
+    "state of the art",
+    "state-of-the-art",
+    "next level",
+    "next-level",
+    "world-class",
+    "best-in-class",
+    "industry-leading",
+    "industry leading",
+    "unmatched",
+    "unparalleled",
+    "unprecedented",
+    "groundbreaking",
+    "innovative",
+    "pioneering",
+    "reimagined",
+    "reinvented",
+    "redefined",
+    "redefining",
+    "the future of",
+    "is the future",
+    "changing the game",
+    "changed the game",
+    "raises the bar",
+    "sets the standard",
+    "level up",
+    "on steroids",
+    "for teams of all sizes",
+    "whether you're a beginner",
+    "whether you are a beginner",
+    "no matter your skill level",
+    "from beginners to experts",
+    "a must-have",
+    "must have tool",
+    "a must have"
   ];
 
   const STYLE_ID = "slopfilter-styles";
@@ -134,9 +178,9 @@
 
   function getThreshold() {
     switch (settings.sensitivity) {
-      case "low": return 75;
-      case "high": return 45;
-      default: return 60;
+      case "low": return 65;
+      case "high": return 30;
+      default: return 45;
     }
   }
 
@@ -148,8 +192,8 @@
     for (const phrase of FILLER_PHRASES) {
       if (lower.includes(phrase)) hits++;
     }
-    // Scale: each hit is worth ~12 points, capped contribution at 50
-    return Math.min(hits * 12, 50);
+    // Scale: each hit is worth 10 points, capped contribution at 60
+    return Math.min(hits * 10, 60);
   }
 
   function scoreSentenceLengthVariance(text) {
