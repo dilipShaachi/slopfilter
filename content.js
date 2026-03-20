@@ -293,31 +293,42 @@
 
   // --- Initialization ---
 
-  function init() {
-    chrome.runtime.sendMessage({ type: "getSettings" }, (response) => {
-      if (chrome.runtime.lastError) return;
-      if (response) {
-        settings.enabled = response.enabled;
-        settings.mode = response.mode;
-        settings.sensitivity = response.sensitivity;
+  function applySettingsAndRun(response) {
+    if (response) {
+      settings.enabled = response.enabled !== undefined ? response.enabled : true;
+      settings.mode = response.mode || "dim";
+      settings.sensitivity = response.sensitivity || "medium";
 
-        // Check whitelist
-        const hostname = window.location.hostname;
-        if (response.whitelist && response.whitelist.includes(hostname)) {
-          settings.enabled = false;
-        }
+      const hostname = window.location.hostname;
+      if (response.whitelist && response.whitelist.includes(hostname)) {
+        settings.enabled = false;
       }
+    }
 
-      if (!settings.enabled) {
-        removeStyles();
-        clearAllMarkers();
+    if (!settings.enabled) {
+      removeStyles();
+      clearAllMarkers();
+      return;
+    }
+
+    injectStyles();
+    scanPage();
+    observeMutations();
+    observeScroll();
+  }
+
+  function init() {
+    // Try background service worker first; fall back to storage directly
+    // (MV3 service workers sleep and may not respond to messages)
+    chrome.runtime.sendMessage({ type: "getSettings" }, (response) => {
+      if (chrome.runtime.lastError || !response) {
+        // Service worker asleep — read storage directly
+        chrome.storage.sync.get("settings", (result) => {
+          applySettingsAndRun(result.settings);
+        });
         return;
       }
-
-      injectStyles();
-      scanPage();
-      observeMutations();
-      observeScroll();
+      applySettingsAndRun(response);
     });
   }
 
