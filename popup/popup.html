@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>SlopFilter</h1>
+      <span class="version">v1.0</span>
+    </div>
+
+    <div class="toggle-row">
+      <label class="toggle-label" for="enableToggle">Filtering</label>
+      <label class="switch">
+        <input type="checkbox" id="enableToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="section">
+      <label class="section-label">Mode</label>
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="dim">Dim</button>
+        <button class="mode-btn" data-mode="hide">Hide</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <label class="section-label">Sensitivity</label>
+      <div class="sensitivity-row">
+        <span class="sens-label">Low</span>
+        <input type="range" id="sensitivitySlider" min="0" max="2" step="1" value="1">
+        <span class="sens-label">High</span>
+      </div>
+      <div class="sens-value" id="sensValue">Medium</div>
+    </div>
+
+    <div class="stats">
+      <span id="pageCount">0</span> blocks filtered on this page
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

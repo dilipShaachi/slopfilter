@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SlopFilter Options</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 40px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 28px;
+      color: #f59e0b;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: #ccc;
+    }
+    .whitelist-input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #2a2a4a;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      font-size: 14px;
+    }
+    input[type="text"]::placeholder { color: #555; }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #f59e0b;
+    }
+    button {
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      background: #f59e0b;
+      color: #1a1a2e;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button:hover { background: #d97706; }
+    .whitelist-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .whitelist-tag {
+      background: #2a2a4a;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .whitelist-tag .remove {
+      cursor: pointer;
+      color: #f87171;
+      font-weight: bold;
+    }
+    .whitelist-tag .remove:hover { color: #ef4444; }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #2a2a4a;
+      font-size: 14px;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-value {
+      color: #f59e0b;
+      font-weight: 600;
+    }
+    .empty {
+      color: #555;
+      font-size: 13px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SlopFilter Options</h1>
+    <p class="subtitle">Configure your AI content filter</p>
+
+    <div class="card">
+      <h2>Whitelisted Domains</h2>
+      <p style="color: #888; font-size: 13px; margin-bottom: 12px;">SlopFilter won't run on these sites.</p>
+      <div class="whitelist-input-row">
+        <input type="text" id="domainInput" placeholder="example.com">
+        <button id="addDomain">Add</button>
+      </div>
+      <div class="whitelist-items" id="whitelistItems">
+        <span class="empty">No domains whitelisted</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Filter Stats</h2>
+      <div class="stat-row">
+        <span>Total blocks filtered</span>
+        <span class="stat-value" id="totalBlocked">0</span>
+      </div>
+      <div class="stat-row">
+        <span>Pages scanned</span>
+        <span class="stat-value" id="pagesScanned">0</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
